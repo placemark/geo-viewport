@@ -1,23 +1,20 @@
 {
   "license": "BSD-2-Clause",
-  "name": "@mapbox/geo-viewport",
+  "name": "@placemark/geo-viewport",
   "repository": {
-    "url": "git@github.com:mapbox/geo-viewport.git",
+    "url": "git@github.com:placemark/geo-viewport.git",
     "type": "git"
   },
   "author": "Tom MacWright",
   "bugs": {
-    "url": "https://github.com/mapbox/geo-viewport/issues"
+    "url": "https://github.com/placemark/geo-viewport/issues"
   },
   "version": "0.5.0",
   "dependencies": {
     "@mapbox/sphericalmercator": "^1.2.0"
   },
   "scripts": {
-    "test": "nyc tap test/*.js",
-    "build": "browserify -s geoViewport index.js | uglifyjs -c > geo-viewport.js",
-    "coverage": "nyc report --reporter html && opener coverage/index.html",
-    "upload-coverage": "nyc report --reporter json && codecov -f ./coverage/coverage-final.json"
+    "test": "vitest"
   },
   "keywords": [
     "geographic",
@@ -26,20 +23,11 @@
     "scale"
   ],
   "devDependencies": {
-    "browserify": "^13.0.0",
-    "codecov": "^3.8.1",
-    "nyc": "^15.1.0",
-    "opener": "^1.5.2",
-    "tap": "^5.7.0",
-    "uglify-js": "^3.12.1"
+    "prettier": "^2.8.0",
+    "typescript": "^4.9.3",
+    "vitest": "^0.25.3"
   },
   "main": "index.js",
-  "homepage": "https://github.com/mapbox/geo-viewport",
-  "description": "convert between viewports and extents",
-  "nyc": {
-    "all": true,
-    "include": [
-      "index.js"
-    ]
-  }
+  "homepage": "https://github.com/placemark/geo-viewport",
+  "description": "convert between viewports and extents"
 }
