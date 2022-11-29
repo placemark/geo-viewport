@@ -1,5 +1,7 @@
 # geo-viewport
 
+## [Docs](https://placemark.github.io/geo-viewport/)
+
 _geo-viewport development is supported by 🌎 [placemark.io](https://placemark.io/)_
 
 Turns bounding boxes / extents into centerpoint & zoom
@@ -43,7 +45,3 @@ viewport(bounds, dimensions, {
     tileSize: 256
 })
 ```
-
-
-
-## [Docs](https://placemark.github.io/geo-viewport/)
