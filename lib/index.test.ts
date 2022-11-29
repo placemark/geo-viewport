@@ -1,25 +1,21 @@
-import { viewport, bounds } from "../index.ts";
+import { Bounds, Position, Viewport, viewport, bounds } from "./index";
 import { test, expect } from "vitest";
 
 // Compare float values up to ~1mm precision
-var decDegreesFloatTolerance = 8;
+const decDegreesFloatTolerance = 8;
 
-function precisionRound(number, precision) {
-  var factor = Math.pow(10, precision);
+function precisionRound(number: number) {
+  var factor = Math.pow(10, decDegreesFloatTolerance);
   return Math.round(number * factor) / factor;
 }
 
-const sampleBounds = [
+const sampleBounds: Bounds = [
   5.668343999999995, 45.111511000000014, 5.852471999999996, 45.26800200000002,
 ];
 
-const expectedCenter = [5.760407969355583, 45.189810341718136];
+const expectedCenter: Position = [5.760407969355583, 45.189810341718136];
 
-function isApproximatelyEqual(a, b) {
-  return Math.abs(a - b) < 1e-10;
-}
-
-function areViewportsApproximatelyEqual(v1, v2) {
+function areViewportsApproximatelyEqual(v1: Viewport, v2: Viewport) {
   expect(v1.center[0]).toBeCloseTo(v2.center[0]);
   expect(v1.center[1]).toBeCloseTo(v2.center[1]);
   expect(v1.zoom).toBeCloseTo(v2.zoom);
@@ -79,18 +75,14 @@ test("viewport across the antimeridian", () => {
 
 test("bounds for 512px tiles", () => {
   expect(
-    bounds([-77.036556, 38.897708], 17, [1080, 350], 512).map((val) =>
-      precisionRound(val, decDegreesFloatTolerance)
-    )
+    bounds([-77.036556, 38.897708], 17, [1080, 350], 512).map(precisionRound)
   ).toEqual([-77.03945339, 38.89697827, -77.03365982, 38.89843951]);
 });
 
 test("bounds for float zooms", () => {
   var zoom = 16.52;
   expect(
-    bounds([-77.036556, 38.897708], zoom, [1080, 350], 512).map((val) =>
-      precisionRound(val, decDegreesFloatTolerance)
-    )
+    bounds([-77.036556, 38.897708], zoom, [1080, 350], 512).map(precisionRound)
   ).toEqual([-77.04059627, 38.89668897, -77.03251573, 38.89872702]);
 });
 

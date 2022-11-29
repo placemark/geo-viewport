@@ -1,7 +1,4 @@
-var SphericalMercator = require("@mapbox/sphericalmercator");
-
-type LongitudeLatitude = [number, number] | { lon: number; lat: number };
-type Ratios = [number, number];
+import SphericalMercator from "@mapbox/sphericalmercator";
 
 function getAdjusted(base: number, ratios: Ratios, allowFloat: boolean) {
   const adjusted = Math.min(
@@ -12,14 +9,43 @@ function getAdjusted(base: number, ratios: Ratios, allowFloat: boolean) {
   return allowFloat ? adjusted : Math.floor(adjusted);
 }
 
+type Ratios = [number, number];
+
+/**
+ * Viewport dimensions, in pixel units.
+ * Width, then height.
+ */
+export type Dimensions = [number, number];
+
+/**
+ * A center point, either as an object, or as an array.
+ * The array must be in Longitude, Latitude order, as is the custom.
+ */
+export type LongitudeLatitude = Position | { lon: number; lat: number };
+
+/**
+ * A Longitude, Latitude position, in that order.
+ */
+export type Position = [number, number];
+
+/**
+ * A bounding rectangle, in WSEN order
+ */
+export type Bounds = [number, number, number, number];
+
+export interface Viewport {
+  center: Position;
+  zoom: number;
+}
+
 /**
  * Given bounds in WSEN order and pixel dimensions,
  * figure out what center and zoom will produce a map
  * view with the same bounds and dimensions.
  */
 export function viewport(
-  bounds: [number, number, number, number],
-  dimensions: [number, number],
+  bounds: Bounds,
+  dimensions: Dimensions,
   {
     minzoom = 0,
     maxzoom = 20,
@@ -27,8 +53,15 @@ export function viewport(
     allowFloat = false,
     allowAntiMeridian = false,
   }: {
+    /**
+     * Given a minimum or maximum zoom, the output zoom will
+     * be clamped between those numbers.
+     */
     minzoom?: number;
     maxzoom?: number;
+    /**
+     * Tile size. By default, this is 256.
+     */
     tileSize?: number;
     /**
      * Allow floating-point zoom levels. By default,
@@ -37,7 +70,7 @@ export function viewport(
     allowFloat?: boolean;
     allowAntiMeridian?: boolean;
   } = {}
-) {
+): Viewport {
   const merc = new SphericalMercator({
     size: tileSize,
     antimeridian: allowAntiMeridian,
@@ -58,20 +91,25 @@ export function viewport(
   return { center, zoom };
 }
 
+/**
+ * The inverse of viewport: given center, zoom,
+ * dimensions, and tileSize, return the bounds that will be produced
+ * when you configure a map with those parameters.
+ */
 export function bounds(
-  viewport: LongitudeLatitude,
-  zoom: boolean,
-  dimensions: [number, number],
-  tileSize: number
-) {
-  if (!Array.isArray(viewport)) {
-    viewport = [viewport.lon, viewport.lat];
+  center: LongitudeLatitude,
+  zoom: number,
+  dimensions: Dimensions,
+  tileSize: number = 256
+): Bounds {
+  if (!Array.isArray(center)) {
+    center = [center.lon, center.lat];
   }
 
   const merc = new SphericalMercator({
     size: tileSize,
   });
-  const px = merc.px(viewport, zoom);
+  const px = merc.px(center, zoom);
   const tl = merc.ll(
     [px[0] - dimensions[0] / 2, px[1] - dimensions[1] / 2],
     zoom
