@@ -1,4 +1,12 @@
-import SphericalMercator from "@mapbox/sphericalmercator";
+import { SphericalMercator } from "./sphericalmercator";
+import {
+  Ratios,
+  Viewport,
+  Position,
+  Bounds,
+  Dimensions,
+  LongitudeLatitude,
+} from "./types";
 
 function getAdjusted(base: number, ratios: Ratios, allowFloat: boolean) {
   const adjusted = Math.min(
@@ -7,35 +15,6 @@ function getAdjusted(base: number, ratios: Ratios, allowFloat: boolean) {
   );
 
   return allowFloat ? adjusted : Math.floor(adjusted);
-}
-
-type Ratios = [number, number];
-
-/**
- * Viewport dimensions, in pixel units.
- * Width, then height.
- */
-export type Dimensions = [number, number];
-
-/**
- * A center point, either as an object, or as an array.
- * The array must be in Longitude, Latitude order, as is the custom.
- */
-export type LongitudeLatitude = Position | { lon: number; lat: number };
-
-/**
- * A Longitude, Latitude position, in that order.
- */
-export type Position = [number, number];
-
-/**
- * A bounding rectangle, in WSEN order
- */
-export type Bounds = [number, number, number, number];
-
-export interface Viewport {
-  center: Position;
-  zoom: number;
 }
 
 /**
@@ -120,3 +99,5 @@ export function bounds(
   );
   return [tl[0], br[1], br[0], tl[1]];
 }
+
+export { Bounds, Position, Viewport };

@@ -1,5 +1,6 @@
 /**
- * Viewport dimensions, in pixel units
+ * Viewport dimensions, in pixel units.
+ * Width, then height.
  */
 type Dimensions = [number, number];
 /**
@@ -28,8 +29,15 @@ interface Viewport {
  * view with the same bounds and dimensions.
  */
 declare function viewport(bounds: Bounds, dimensions: Dimensions, { minzoom, maxzoom, tileSize, allowFloat, allowAntiMeridian, }?: {
+    /**
+     * Given a minimum or maximum zoom, the output zoom will
+     * be clamped between those numbers.
+     */
     minzoom?: number;
     maxzoom?: number;
+    /**
+     * Tile size. By default, this is 256.
+     */
     tileSize?: number;
     /**
      * Allow floating-point zoom levels. By default,
@@ -43,6 +51,6 @@ declare function viewport(bounds: Bounds, dimensions: Dimensions, { minzoom, max
  * dimensions, and tileSize, return the bounds that will be produced
  * when you configure a map with those parameters.
  */
-declare function bounds(center: LongitudeLatitude, zoom: number, dimensions: [number, number], tileSize?: number): Bounds;
+declare function bounds(center: LongitudeLatitude, zoom: number, dimensions: Dimensions, tileSize?: number): Bounds;
 
 export { Bounds, Dimensions, LongitudeLatitude, Position, Viewport, bounds, viewport };
