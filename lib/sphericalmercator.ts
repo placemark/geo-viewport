@@ -12,10 +12,6 @@ interface ZoomParams {
 
 const cache: Record<number, ZoomParams> = {};
 
-function isFloat(n: number) {
-  return Number(n) === n && n % 1 !== 0;
-}
-
 // SphericalMercator constructor: precaches calculations
 // for fast tile lookups.
 export class SphericalMercator {
@@ -64,7 +60,7 @@ export class SphericalMercator {
   // - `ll` {Array} `[lon, lat]` array of geographic coordinates.
   // - `zoom` {Number} zoom level.
   px(ll: Position, zoom: number): Position {
-    if (isFloat(zoom)) {
+    if (!Number.isInteger(zoom)) {
       let size = this.size * Math.pow(2, zoom);
       let d = size / 2;
       let bc = size / 360;
@@ -99,7 +95,7 @@ export class SphericalMercator {
   // - `px` {Array} `[x, y]` array of geographic coordinates.
   // - `zoom` {Number} zoom level.
   ll(px: Position, zoom: number): Position {
-    if (isFloat(zoom)) {
+    if (!Number.isInteger(zoom)) {
       let size = this.size * Math.pow(2, zoom);
       let bc = size / 360;
       let cc = size / (2 * Math.PI);
