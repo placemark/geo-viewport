@@ -1,5 +1,7 @@
 # geo-viewport
 
+On npm as [`@placemarkio/geo-viewport`](https://npmjs.com/@placemarkio/geo-viewport).
+
 ## [Docs](https://placemark.github.io/geo-viewport/)
 
 _geo-viewport development is supported by 🌎 [placemark.io](https://placemark.io/)_

@@ -1,6 +1,6 @@
 {
   "license": "BSD-2-Clause",
-  "name": "@placemark/geo-viewport",
+  "name": "@placemarkio/geo-viewport",
   "repository": {
     "url": "git@github.com:placemark/geo-viewport.git",
     "type": "git"
