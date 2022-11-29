@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/placemark/geo-viewport/issues"
   },
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "scripts": {
     "test": "vitest run",
     "doc": "typedoc --options ./typedoc.json",
