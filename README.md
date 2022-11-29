@@ -15,6 +15,7 @@ with the following changes:
 - Fixed crashing bug introduced in `0.5.0`
 - Includes TypeScript types
 - Modernized project & dependencies
+- Smaller module and bundle size, with no dependencies
 - ESM & CJS output types
 
 ## Changes
