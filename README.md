@@ -13,4 +13,37 @@ with the following changes:
 - Modernized project & dependencies
 - ESM & CJS output types
 
+## Changes
+
+Most of the improvements to this package are internal, but the `viewport` method has changed.
+In the Mapbox version, it grew quite a few parameters and is now:
+
+```ts
+viewport(bounds, dimensions, minzoom, maxzoom, tileSize, allowFloat, allowAntiMeridian)
+```
+
+In this fork **this has changed** so that there is less remembering required. The method
+signature is:
+
+```ts
+// Showing default values
+viewport(bounds, dimensions, {
+    minzoom: 0,
+    maxzoom: 20,
+    tileSize: 256,
+    allowFloat: false,
+    allowAntiMeridian: false
+})
+
+// You can omit any options or the options array:
+viewport(bounds, dimensions);
+
+// Just one option:
+viewport(bounds, dimensions, {
+    tileSize: 256
+})
+```
+
+
+
 ## [Docs](https://placemark.github.io/geo-viewport/)
