@@ -39,3 +39,5 @@ jspm_packages
 
 # Node Version Manager config
 .nvmrc
+
+dist

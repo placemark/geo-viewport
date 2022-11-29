@@ -100,4 +100,4 @@ export function bounds(
   return [tl[0], br[1], br[0], tl[1]];
 }
 
-export { Bounds, Position, Viewport };
+export { Dimensions, LongitudeLatitude, Bounds, Position, Viewport };
