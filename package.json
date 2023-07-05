@@ -49,5 +49,11 @@
     "vitest": "^0.25.3"
   },
   "homepage": "https://github.com/placemark/geo-viewport",
-  "description": "convert between viewports and extents"
+  "description": "convert between viewports and extents",
+  "volta": {
+    "node": "20.4.0"
+  },
+  "engines": {
+    "node": "*"
+  }
 }
