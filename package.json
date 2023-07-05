@@ -29,7 +29,7 @@
   "scripts": {
     "test": "vitest run",
     "doc": "typedoc --options ./typedoc.json",
-    "prepare": "rollup -c rollup.config.mjs && npm run doc"
+    "prepublishOnly": "rollup -c rollup.config.mjs && npm run doc"
   },
   "keywords": [
     "geographic",
