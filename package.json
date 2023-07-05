@@ -18,8 +18,8 @@
   "main": "dist/geo-viewport.cjs",
   "exports": {
     "require": "./dist/geo-viewport.cjs",
-    "default": "./dist/geo-viewport.es.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "default": "./dist/geo-viewport.es.mjs"
   },
   "author": "Tom MacWright",
   "bugs": {
